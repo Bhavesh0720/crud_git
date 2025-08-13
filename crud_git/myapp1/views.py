@@ -43,3 +43,8 @@ def edit_data(request, id):
         return redirect('index')
     else:
         return render(request, 'index.html')
+    
+def delete_data(request, id):
+    uid = Employee.objects.get(id=id)
+    uid.delete()
+    return redirect('index')
