@@ -24,4 +24,22 @@ def add_data(request):
         )
         uid.save()
         return redirect('index')
-    return render(request, 'index.html')
+    else:
+        return render(request, 'index.html')
+
+def edit_data(request, id):
+    uid = Employee.objects.get(id=id)
+    if request.POST:
+        name = request.POST['name']
+        email = request.POST['email']
+        address = request.POST['address']
+        phone = request.POST['phone']
+
+        uid.name=name
+        uid.email=email
+        uid.address=address
+        uid.phone=phone
+        uid.save()
+        return redirect('index')
+    else:
+        return render(request, 'index.html')
